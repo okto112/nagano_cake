@@ -10,7 +10,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
 
 namespace :public do
-    get 'top', to:'homes#top'
+    root to: "homes#top"
     get '/customers/my_page', to: 'customers#show'
 end
 
