@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  layout 'admin'
   before_action :authenticate_admin!
   before_action :configure_permitted_parameters, if: :devise_controller?
   # before_action :configure_sign_in_params, only: [:create]
 
   def after_sign_in_path_for(resource)
-    admin_path
+    admin_top_path
   end
 
   def after_sign_out_path_for(resource)
@@ -38,6 +39,6 @@ class Admin::SessionsController < Devise::SessionsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 end
