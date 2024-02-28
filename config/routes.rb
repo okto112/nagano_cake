@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :public do
       get 'top', to:'homes#top'
       get '/customers/my_page', to: 'customers#show'
+      resources :items, only: [:index, :show]
   end
 
   namespace :admin do

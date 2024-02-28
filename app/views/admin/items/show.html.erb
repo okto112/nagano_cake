@@ -36,7 +36,7 @@
         税抜価格(税込価格)
       </td>
       <td>
-        <%= @item.price %>(<%= @item.price.to_i + @item.price.to_i % 10 %>)
+        <%= @item.price %>(<%= (@item.price + @item.price * 0.1).round %>)
       </td>
     </tr>
 
@@ -55,4 +55,4 @@
   </tbody>
 </table>
 
-<%= link_to '編集する', edit_admin_customer_path %>
+<%= link_to '編集する', edit_admin_item_path(@item.id) %>
