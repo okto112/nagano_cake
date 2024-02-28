@@ -14,14 +14,20 @@
   <tbody>
     <% @items.each do |item| %>
     <tr>
-      <td><%= item.id %></td>
+      <td>
+        <%= item.id %>
+      </td>
       <td>
         <%= link_to admin_item_path(item.id) do %>
           <%= item.name %>
         <% end %>
       </td>
-      <td><%= item.price %></td>
-      <td><%= @genres.find(item.genre_id).name %></td>
+      <td>
+        <%= item.price %>
+      </td>
+      <td>
+        <%= @genres.find(item.genre_id).name %>
+      </td>
       <td>
         <% if item.is_active == true %>
           販売中

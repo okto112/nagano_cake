@@ -14,8 +14,12 @@
     <% if customer_signed_in? %>
       <div class="text-right">
         <%= link_to 'マイページ', public_customers_my_page_path %>
+        <%= link_to '商品一覧', public_items_path %>
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
       </div>
+      <%= form_with url: public_items_path, method: :get do |f| %>
+        <%= f.text_field :item_name, placeholder: "Search" %>
+      <% end %>
     <% end %>
     <%= yield %>
   </body>
