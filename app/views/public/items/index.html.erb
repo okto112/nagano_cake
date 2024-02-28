@@ -1,0 +1,10 @@
+<h1><%= @title %>一覧</h1><p>(全<%= @items.count %>件)</p>
+
+<% @items.each do |item| %>
+<table>
+  <tbody>
+    
+  </tbody>
+</table>
+<%= image_tag @item.get_image(100,100) %>
+<% end %>
