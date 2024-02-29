@@ -3,8 +3,13 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @items = Item.page(params[:page])
-    @genres = Genre.all
+    if params[:item_name] != nil
+      @items = Item.where("name LIKE ?", "%#{params[:item_name]}%").page(params[:page])
+      @genres = Genre.all
+    else
+      @items = Item.page(params[:page])
+      @genres = Genre.all
+    end
   end
 
   def show
