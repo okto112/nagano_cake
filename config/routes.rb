@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/customers/my_page', to: 'customers#show'
       resources :items, only: [:index, :show]
       resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+      resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
   namespace :admin do
