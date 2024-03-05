@@ -3,25 +3,37 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
-    @items = Item.find(@cart_items.item_id)
-    if params[:cart_item] != nil
-      @cart_items = CartItem.all
-      @cart_item = CartItem.new
-    end
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    if @cart_item.save
+    @cart_item_new = CartItem.new(cart_item_params)
+    if @cart_item_new.save
       redirect_to public_cart_items_path
     else
-      @cart_item = CartItem.new
+      @cart_items = CartItem.all
       render :index
     end
   end
 
-  def subtotal
-    item.with_tax_price * amount
+  def update
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      redirect_to public_cart_items_path
+    else
+      @cart_items = CartItem.all
+      render :index
+    end
+  end
+
+  def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to public_cart_items_path
+  end
+
+  def destroy_all
+    CartItem.destroy_all
+    redirect_to public_cart_items_path
   end
 
   private
