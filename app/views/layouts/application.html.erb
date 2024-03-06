@@ -16,7 +16,7 @@
         <%= link_to 'マイページ', public_customers_my_page_path %>
         <%= link_to '商品一覧', public_items_path %>
         <%= link_to 'カート', public_cart_items_path %>
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+        <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
       </div>
       <%= form_with url: public_items_path, method: :get do |f| %>
         <%= f.text_field :item_name, placeholder: "Search" %>
