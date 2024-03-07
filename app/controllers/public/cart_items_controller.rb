@@ -3,6 +3,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total = 0
   end
 
   def create
@@ -24,7 +25,6 @@ class Public::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    byebug
     if @cart_item.update!(cart_item_params)
       redirect_to public_cart_items_path
     else

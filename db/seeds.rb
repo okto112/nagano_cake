@@ -10,16 +10,3 @@ Admin.create!(
   email: 'toshi.oka.0602@gmail.com',
   password: 'asfghj'
 )
-
-Genre.create!(
-  id: 21,
-  name: 'cake',
-)
-
-Item.create!(
-  name: 'cheese cake',
-  introduction: 'cheese',
-  price: 1220,
-  genre_id: 21,
-  is_active: true
-)

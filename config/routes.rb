@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-      get 'top', to:'homes#top'
+      root to: "homes#top"
       get '/customers/my_page', to: 'customers#show'
       delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: 'destroy_all_cart_items'
       resources :items, only: [:index, :show]
