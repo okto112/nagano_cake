@@ -38,10 +38,10 @@ class Public::OrdersController < ApplicationController
       @cart_items.each do |cart_item|
         @order_detail = OrderDetail.new
         @order_detail.order_id = @order.id
-        @order_detail.item_id = cart_item.item.id
-        @order_detail.price = cart_item.item.price
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.purchase_price = cart_item.item.with_tax_price
         @order_detail.amount = cart_item.amount
-        @order_detail.making_status = OrderDetail.making_status.key(0)
+        @order_detail.making_status = OrderDetail.making_statuses.key(0)
         @order_detail.save!
       end
     CartItem.where(customer_id: params[:order][:customer_id]).destroy_all
