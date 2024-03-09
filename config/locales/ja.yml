@@ -4,6 +4,18 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      status:
+        waiting_payment: "入金待ち"
+        payment_confirm: "入金確認"
+        in_production: "製作中"
+        preparing_ship: "発送準備中"
+        shipped: "発送済み"
+    order_detail:
+      making_status:
+        not_possible: "製作不可"
+        waiting_production: "制作待ち"
+        in_production: "製作中"
+        production_completed: "制作完了"
   activerecord:
     errors:
       messages:
