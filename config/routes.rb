@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  root to: "public/homes#top"
+  get '/about', to: 'public/homes#about', as: 'about'
 
   namespace :public do
-      root to: "homes#top"
       get '/customers/my_page', to: 'customers#show'
       get '/orders/confirm', to: 'orders#confirm'
       get '/orders/complete', to: 'orders#complete'
