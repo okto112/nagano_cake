@@ -5,14 +5,17 @@
       <tr>
         <td>購入者</td>
         <td>
-          <%= @order.name %>
+          <%= link_to admin_customer_path(@order.customer_id) do %>
+            <%= @order.name %>
+          <% end %>
+        </td>
         </td>
       </tr>
 
       <tr>
         <td>注文日</td>
         <td>
-          <%= @order_detail.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= @order.created_at.strftime('%Y/%m/%d') %>
         </td>
       </tr>
 
@@ -39,6 +42,55 @@
             <%= f.submit "更新" %>
           <% end %>
         </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order_details.each do |order_detail| %>
+    <tr>
+      <td><%= Item.find(order_detail.item_id).name %></td>
+      <td><%= order_detail.purchase_price.to_s(:delimited) %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.purchase_price * order_detail.amount %></td>
+      <td>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
+          <%= f.select :making_status, OrderDetail.making_statuses_i18n.map { |k, v| [v, k] }, selected: order_detail.making_status %>
+          <%= f.submit "更新" %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+    <tbody>
+      <tr>
+        <td>商品合計</td>
+        <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>円</td>
+        </td>
+      </tr>
+
+      <tr>
+        <td>送料</td>
+        <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+      </tr>
+
+      <tr>
+        <td>請求金額合計</td>
+        <td><%= @order.total_payment.to_s(:delimited) %>円</td>
       </tr>
     </tbody>
   </table>
