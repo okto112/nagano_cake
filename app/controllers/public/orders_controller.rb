@@ -25,7 +25,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
     elsif params[:order][:radio] == "登録済み住所から選択"
       address = Address.find(params[:order][:address_id])
-      @order.name = address.last_name + address.first_name
+      @order.name = address.name
       @order.address = address.address
       @order.postal_code = address.postal_code
     elsif params[:order][:radio] == "新しく配送先を登録する"

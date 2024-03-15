@@ -1,5 +1,7 @@
 <h1>商品一覧</h1>
 
+<%= link_to '+', new_admin_item_path %>
+
 <table>
   <thead>
     <tr>
@@ -7,6 +9,7 @@
       <th>商品名</th>
       <th>税抜価格</th>
       <th>ジャンル</th>
+      <th>　</th>
       <th>ステータス</th>
     </tr>
   </thead>
@@ -28,6 +31,7 @@
       <td>
         <%= @genres.find(item.genre_id).name %>
       </td>
+      <td>　</td>
       <td>
         <% if item.is_active == true %>
           販売中
