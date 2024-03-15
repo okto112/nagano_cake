@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   namespace :public do
       get '/customers/my_page', to: 'customers#show'
+      get '/customers/information/edit', to: 'customers#edit'
+      patch '/customers/information', to: 'customers#update'
+      get '/customers/unsubscribe', to: 'customers#unsubscribe'
+      patch '/customers/withdraw', to: 'customers#withdraw'
       get '/orders/confirm', to: 'orders#confirm'
       get '/orders/complete', to: 'orders#complete'
       delete 'cart_items/destroy_all', to: 'cart_items#destroy_all', as: 'destroy_all_cart_items'
