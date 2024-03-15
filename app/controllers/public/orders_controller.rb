@@ -1,6 +1,16 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
+  def index
+    @orders = Order.where(customer_id: current_customer.id).page(params[:page])
+    @order_details
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: @order.id)
+  end
+
   def new
     @order = Order.new
   end
