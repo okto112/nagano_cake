@@ -6,29 +6,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/805b015b17.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if customer_signed_in? %>
-      <div class="text-right">
-        <%= link_to 'マイページ', public_customers_my_page_path %>
-        <%= link_to '商品一覧', public_items_path %>
-        <%= link_to 'カート', public_cart_items_path %>
-        <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
-      </div>
-    <% elsif %>
-      <div class="text-right">
-        <%= link_to 'About', about_path %>
-        <%= link_to '商品一覧', public_items_path %>
-        <%= link_to '新規登録', new_customer_registration_path %>
-        <%= link_to 'ログイン', new_customer_session_path %>
-      </div>
-    <% end %>
-    <%= form_with url: public_items_path, method: :get do |f| %>
-      <%= f.text_field :item_name, placeholder: "Search" %>
-    <% end %>
+    <header class="header bg-dark mb-3">
+      <% if customer_signed_in? %>
+        <div class="text-right">
+          <%= link_to 'マイページ', public_customers_my_page_path %>
+          <%= link_to '商品一覧', public_items_path %>
+          <%= link_to 'カート', public_cart_items_path %>
+          <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
+        </div>
+      <% elsif %>
+        <div class="text-right">
+          <%= link_to 'About', about_path %>
+          <%= link_to '商品一覧', public_items_path %>
+          <%= link_to '新規登録', new_customer_registration_path %>
+          <%= link_to 'ログイン', new_customer_session_path %>
+        </div>
+      <% end %>
+      <%= form_with url: public_items_path, method: :get do |f| %>
+        <%= f.text_field :item_name, placeholder: "Search" %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
