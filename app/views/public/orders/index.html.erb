@@ -1,37 +1,39 @@
-<h1>注文履歴一覧</h1>
+<div class="col">
+  <h2 class="p-2 bg-secondary text-white mb-5 text-center">注文履歴一覧</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>注文商品</th>
-      <th>支払金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
-    </tr>
-  </thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="table-active">注文日</th>
+        <th class="table-active">配送先</th>
+        <th class="table-active">注文商品</th>
+        <th class="table-active">支払金額</th>
+        <th class="table-active">ステータス</th>
+        <th class="table-active">注文詳細</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-      <td>
-        <p><%= '〒' + order.postal_code + ' ' + order.address %></p>
-        <p><%= order.name %></p>
-      </td>
-      <td>
-        <% @order_details = OrderDetail.where(order_id: order.id) %>
-        <% @order_details.each do |order_detail| %>
-          <p><%= Item.find(order_detail.item_id).name %></p>
-        <% end %>
-      </td>
-      <td><%= order.total_payment.to_s(:delimited) %>円</td>
-      <td><%= order.status_i18n %></td>
-      <td><%= link_to '表示する', public_order_path(order.id) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td>
+          <p><%= '〒' + order.postal_code + ' ' + order.address %></p>
+          <p><%= order.name %></p>
+        </td>
+        <td>
+          <% @order_details = OrderDetail.where(order_id: order.id) %>
+          <% @order_details.each do |order_detail| %>
+            <p><%= Item.find(order_detail.item_id).name %></p>
+          <% end %>
+        </td>
+        <td><%= order.total_payment.to_s(:delimited) %>円</td>
+        <td><%= order.status_i18n %></td>
+        <td><%= link_to '表示する', public_order_path(order.id), class:"btn btn-primary" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= paginate @orders %>
+  <%= paginate @orders %>
+</div>
