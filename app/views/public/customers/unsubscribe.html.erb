@@ -11,7 +11,7 @@
     <%= f.hidden_field :is_active, :value => false %>
 
     <%= link_to '退会しない', public_customers_my_page_path, class:"btn btn-primary m-2" %>
-    <%= f.submit "退会する", class:"btn btn-danger m-2" %>
+    <%= f.submit "退会する", data: {confirm: "本当に退会 しますか？"}, class:"btn btn-danger m-2" %>
 
     <% end %>
   </div>
