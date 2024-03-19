@@ -1,0 +1,23 @@
+<%= render 'genre_search', genres: @genres %>
+
+<div class="col-1 ml-3">
+  <%= image_tag @item.get_image(100,100) %>
+</div>
+
+<div class="col ml-3">
+  <h3><%= @item.name %></h3>
+  <p><%= @item.introduction %></p>
+
+  <p>￥<%= (@item.price * 1.1).round.to_s(:delimited) %>(税込)</p>
+
+  <p>数量を選択して下さい。</p>
+
+  <%= form_with model: @cart_item, url: public_cart_items_path do |f| %>
+
+  <%= f.select :amount, *[1..10] %>
+  <%= f.hidden_field :item_id, :value => params[:id] %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.submit "カートに入れる", class:"btn btn-success" %>
+
+  <% end %>
+</div>

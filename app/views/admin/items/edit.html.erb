@@ -1,0 +1,50 @@
+<div class="col">
+    <h2 class="p-2 bg-secondary text-white mb-5 text-center">商品編集</h2>
+
+    <div class="col-6 m-auto">
+      <%= form_with model: @item, url: admin_item_path(@item) do |f| %>
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 40%">商品画像</td>
+              <td style="width: 40%"><%= f.file_field :image, accept: "image/*" %></td>
+            </tr>
+
+            <tr>
+              <td>商品名</td>
+              <td><%= f.text_field :name, placeholder: "商品名" %></td>
+            </tr>
+
+            <tr>
+              <td>商品説明</td>
+              <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %></td>
+            </tr>
+
+            <tr>
+              <td>ジャンル</td>
+              <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
+            </tr>
+
+            <tr>
+              <td>税抜価格</td>
+              <td><%= f.text_field :price, placeholder: "1000" %>円</td>
+            </tr>
+
+            <tr>
+              <td>販売ステータス</td>
+              <td>
+                <%= f.radio_button :is_active, :true %>
+                <%= f.label :is_active, "販売中", class:"text-success font-weight-bold" %>
+
+                <%= f.radio_button :is_active, :false %>
+                <%= f.label :is_active, "販売停止中", class:"text-danger font-weight-bold" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-2 m-auto">
+          <%= f.submit "変更を保存", class:"btn btn-success" %>
+          </div>
+      <% end %>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<%= render 'genre_search', genres: @genres %>
+
+<div class="col ml-3">
+  <div class="row mb-3">
+    <h1><%= @title %>一覧</h1>
+    <p class="mt-4">(全<%= @items.count %>件)</p>
+  </div>
+
+   <div class="row">
+      <% @items.each do |item| %>
+      <div class="col-3">
+        <%= link_to public_item_path(item.id) do %>
+            <p><%= image_tag item.get_image(100,100) %></p>
+
+            <p><%= item.name %></p>
+
+            <p>￥<%= item.price.to_s(:delimited) %></p>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  <%= paginate @items %>
+</div>

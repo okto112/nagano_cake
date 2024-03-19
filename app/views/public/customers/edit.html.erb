@@ -1,0 +1,50 @@
+<div class="col">
+  <div class="text-center">
+    <h2 class="p-2 bg-secondary text-white mb-5">会員情報編集</h2>
+
+    <%= form_with model: @customer, url: public_customers_information_path do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td style="width: 40%">氏名</td>
+            <td style="width: 40%"><%= f.text_field :last_name, autofocus: true, placeholder:"姓" %></td>
+            <td style="width: 40%"><%= f.text_field :first_name, placeholder:"名" %></td>
+          </tr>
+
+          <tr>
+            <td>カナ</td>
+            <td><%= f.text_field :last_name_kana, placeholder:"セイ" %></td>
+            <td><%= f.text_field :first_name_kana, placeholder:"メイ" %></td>
+          </tr>
+
+          <tr>
+            <td>郵便番号</td>
+            <td><%= f.text_field :postal_code, placeholder:"000000" %></td>
+          </tr>
+
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address, placeholder:"住所" %></td>
+          </tr>
+
+          <tr>
+            <td>電話番号</td>
+            <td><%= f.text_field :telephone_number, placeholder:"00000000000" %></td>
+          </tr>
+
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email, placeholder:"○○○＠○○○○" %></td>
+          </tr>
+        </tbody>
+      </table>
+
+    <div class="col-4 m-auto">
+      <div class="row d-flex justify-content-around mt-4">
+        <p><%= f.submit "編集を保存", class:"btn btn-success" %></p>
+        <p><%= link_to '退会する', public_customers_unsubscribe_path, class:"btn btn-danger" %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

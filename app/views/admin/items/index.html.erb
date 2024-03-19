@@ -1,0 +1,55 @@
+<div class="col">
+  <h2 class="p-2 bg-secondary text-white mb-2 text-center">商品一覧</h2>
+
+  <div class="col-1 ml-auto">
+    <%= link_to new_admin_item_path do %>
+      <div class="btn btn-light rounded-circle p-0 mb-2" style="width:3rem; height:3rem; font-size:30px;">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+    <% end %>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="table-active">商品ID</th>
+        <th class="table-active">商品名</th>
+        <th class="table-active">税抜価格</th>
+        <th class="table-active">ジャンル</th>
+        <th class="table-active">　</th>
+        <th class="table-active">ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+      <tr>
+        <td>
+          <%= item.id %>
+        </td>
+        <td>
+          <%= link_to admin_item_path(item.id) do %>
+            <%= item.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= item.price.to_s(:delimited) %>
+        </td>
+        <td>
+          <%= @genres.find(item.genre_id).name %>
+        </td>
+        <td>　</td>
+        <td>
+          <% if item.is_active == true %>
+            <p class="text-success font-weight-bold">販売中</p>
+          <% else %>
+            <p class="text-danger font-weight-bold">販売停止中</p>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @items %>
+</div>
