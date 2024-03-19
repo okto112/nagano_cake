@@ -18,6 +18,7 @@ class Public::CartItemsController < ApplicationController
         redirect_to public_cart_items_path
       else
         @cart_items = CartItem.where(customer_id: current_customer.id)
+        @total = 0
         render :index
       end
     end
@@ -25,6 +26,7 @@ class Public::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
+    @total = 0
     if @cart_item.update!(cart_item_params)
       redirect_to public_cart_items_path
     else

@@ -43,7 +43,29 @@
                 </div>
                 <div class="col-2">
                   <div class="header-content">
-                    <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:"btn btn-outline-dark" %>
+                    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"btn btn-outline-dark" %>
+                  </div>
+                </div>
+
+                <% elsif %>
+                <div class="col-3">
+                  <div class="header-content">
+                    <%= link_to 'About', about_path, class:"btn btn-outline-dark" %>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="header-content">
+                    <%= link_to '商品一覧', public_items_path, class:"btn btn-outline-dark" %>
+                   </div>
+                </div>
+                <div class="col-3">
+                  <div class="header-content">
+                    <%= link_to '新規登録', new_customer_registration_path, class:"btn btn-outline-dark" %>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="header-content">
+                    <%= link_to 'ログイン', new_admin_session_path, class:"btn btn-outline-dark" %>
                   </div>
                 </div>
               <% end %>

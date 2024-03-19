@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     if @customer.update(customer_params)
       sign_out(current_customer)
-      redirect_to new_customer_registration_path
+      redirect_to root_path
     else
       render :edit
     end

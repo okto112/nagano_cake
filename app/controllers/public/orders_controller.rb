@@ -12,6 +12,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
+    unless CartItem.exists?(customer_id: current_customer.id)
+      redirect_to public_cart_items_path
+    end
     @order = Order.new
   end
 
